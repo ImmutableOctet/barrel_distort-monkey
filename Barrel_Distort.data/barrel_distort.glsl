@@ -9,12 +9,12 @@ uniform float EffectPower;
 const float PI = 3.1415926535;
 
 // Functions:
-vec2 Distort(vec2 p, float len)
+vec2 Distort(vec2 p, float len, float power)
 {
     float theta  = atan(p.y, p.x);
     float radius = len;
     
-    radius = pow(radius, EffectPower);
+    radius = pow(radius, power);
     
     p.x = radius * cos(theta);
     p.y = radius * sin(theta);
@@ -22,9 +22,9 @@ vec2 Distort(vec2 p, float len)
     return 0.5 * (p + 1.0);
 }
 
-vec2 Distort(vec2 p)
+vec2 Distort(vec2 p, float power)
 {
-	return Distort(p, length(p));
+	return Distort(p, length(p), power);
 }
 
 void shader()
@@ -37,7 +37,7 @@ void shader()
 	
 	if (d < 1.0)
 	{
-		uv = Distort(xy, d);
+		uv = Distort(xy, d, EffectPower);
 	}
 	else
 	{

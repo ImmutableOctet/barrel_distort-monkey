@@ -17,18 +17,18 @@ Public
 Import mojo2
 
 ' Classes:
-Class FishEyeShader Extends BumpShader ' Final
+Class BarrelShader Extends BumpShader ' Final
 	' Global variable(s) (Private):
 	Private
 	
-	Global _Instance:FishEyeShader
+	Global _Instance:BarrelShader
 	
 	Public
 	
 	' Functions:
-	Function Instance:FishEyeShader()
+	Function Instance:BarrelShader()
 		If (_Instance = Null) Then
-			_Instance = New FishEyeShader()
+			_Instance = New BarrelShader()
 		Endif
 		
 		Return _Instance
@@ -56,13 +56,13 @@ Class Application Extends App Final
 		
 		Graphics = New Canvas()
 		
-		Local FishEye:= FishEyeShader.Instance()
+		Local Barrel:= BarrelShader.Instance()
 		
-		'Shader.SetDefaultShader(FishEye)
+		'Shader.SetDefaultShader(Barrel)
 		
 		Local T:= New Texture(480, 480, 4, Texture.ClampST|Texture.RenderTarget)
 		
-		Local M:= New Material(FishEye)
+		Local M:= New Material(Barrel)
 		
 		M.SetTexture("ColorTexture", T)
 		
